@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="../lib/createjs-2013.02.12.min.js"></script>
+    <title>button test</title>
+</head>
+<body>
+<canvas id="canvas2d"></canvas>
+<script>
+    var stage = new createjs.Stage(document.getElementById('canvas2d'));
+    var button = new createjs.Container();
+    var bg = new createjs.Shape();
+    bg.graphics.beginFill('#3366cc').rect(0,0,100,60).endFill();
+    button.addChild( bg );
+    button.title = button.addChild(new createjs.Text("normal", "20px Arial", "#ffffff"));
+    button.addEventListener('click', function(){
+        button.title.text = 'click';
+    });
+    button.addEventListener('mouseover',function(){
+        button.title.text = 'hover';
+    });
+    button.addEventListener('mouseout',function(){
+        button.title.text = 'normal';
+    });
+    stage.addChild( button );
+    stage.enableMouseOver();
+    createjs.Ticker.addEventListener("tick", function(){
+        stage.update();
+    });
+</script>
+</body>
+</html>
